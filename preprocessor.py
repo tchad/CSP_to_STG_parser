@@ -3,7 +3,7 @@
 # Tomasz Chadzynski 
 # San Jose State University, 2020
 # 
-# This software is provided AS IS and comes witn no warranty
+# This software is provided AS IS and comes with no warranty
 #
 
 # The CSP source parser to token representation
