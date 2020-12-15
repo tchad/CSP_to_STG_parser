@@ -1,0 +1,13 @@
+The CSP to STG parser developed as part of the thesis titled "An Efficient Design Methodology for Complex Sequential Asynchronous Digital Circuits."
+
+
+Early proof of concept version.
+
+version: 0.0.1concept_preview_alpha
+
+Dependencies:
+    Python 3
+
+Example usage:
+    ./translate example/example1.csp
+

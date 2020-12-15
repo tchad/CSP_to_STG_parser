@@ -1,0 +1,34 @@
+module controller;
+ 
+inputs r1 r2 rdy ack;
+outputs r1ack r2ack req resp done;
+ 
+main ctrl;
+ 
+explicit_place P0;
+explicit_place P1;
+ 
+loop_place [r1ack-]->[r1+];
+loop_place [r2ack-]->[r2+];
+loop_place [r1ack- r2ack-]->[r1ack+ r2ack+];
+
+marking [r1ack-]->[r1+];
+marking [r2ack-]->[r2+];
+marking [r1ack- r2ack-]->[r1ack+ r2ack+];
+
+endinterface
+
+ctrl: *[
+ [(r1+)->(r1ack+ => P0) | (r2+)->(r2ack+ => P1)];
+ req+;
+ [rdy+];
+ req-;
+ resp+;
+ [ack+];
+ done+; 
+ [rdy-];
+ done-;
+ resp-;
+ [ack-];
+ [(P0; r1-)->r1ack- [] (P1; r2-)->r2ack-];
+]

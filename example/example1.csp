@@ -1,0 +1,41 @@
+module controller;
+
+inputs req transaction_req choice_b choice_a send_ack;
+outputs ack transaction_ack choice_req;
+
+explicit_place P0;
+loop_place [ack-]->[req+];
+loop_place [transaction_ack-]->[transaction_req+];
+
+marking [ack-]->[req+];
+marking [transaction_ack-]->[transaction_req+];
+marking [ack- transaction_ack-]->[ack+ choice_req+];
+
+main stg_main;
+fragment frag_task_a;
+fragment frag_task_b;
+endinterface
+
+stg_main:
+    frag_task_a : frag_task_b
+
+frag_task_a:
+    *[
+        req+;
+        P0=>ack+;
+        req-;
+        ack-=>P0;
+    ]
+
+frag_task_b:
+    *[
+        transaction_req+;
+        P0=>choice_req+;
+        [( choice_a+; choice_req-; choice_a-; ) |
+         ( choice_b+; choice_req-; choice_b-;)
+        ];
+        transaction_ack+;
+        transaction_req-;
+        transaction_ack-=>P0;
+    ]
+
