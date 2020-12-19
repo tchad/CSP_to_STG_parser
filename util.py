@@ -11,6 +11,12 @@
 import p_types as t 
 
 def extract_block_subarray(idx, arr):
+    '''
+    Extracts set of tokens enclosed by outermost square brackets.
+
+    Takes into account open/close count.
+    '''
+
     opening = arr[idx]
     closing = ''
 
@@ -46,6 +52,10 @@ def extract_block_subarray(idx, arr):
     return (i, ret[:-1])
 
 def get_src(label, model):
+    '''
+    Seraches by name and returns tokens of a CSP fragment.
+    '''
+
     fragment_src = None
 
     for f in model.code_fragments:
@@ -63,6 +73,11 @@ def get_src(label, model):
     return ret
 
 def gen_place_label(model):
+    '''
+    Autogenerates a new name for an STG place while avoiding
+    name collision"
+    '''
+
     i = -1
     label = ''
     done = False
@@ -279,7 +294,7 @@ def match_inputs_relaxed(model, inputs, elem_type, search_set=None):
     return ret
 
 def match_outputs_relaxed(model, outputs, elem_type, search_set=None):
-    #this version does not assume strict match in inputs
+    #this version does not assume strict match in outputs
     #having all outputs required and potentially some additional ones 
     #satisfies the condition
     ret = []
@@ -338,7 +353,8 @@ def print_graph2(model):
         print(out)
 
 def loop_place_equiv(p1, p2):
-    #compares two loop place specs regardless of order of transitions in array
+    '''compares two loop place specs regardless of order of transitions in array'''
+
     if len(p1.input) != len(p2.input):
         return False
 

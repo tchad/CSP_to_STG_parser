@@ -15,8 +15,7 @@ import syntax
 from enum import Enum
 
 def gen_tree(model):
-    #main function that generates the stg graph
-
+    '''Main function that generates the stg graph'''
 
     #instantiate first tree element containing main procedure
     entry = t.TreeFragment()
@@ -56,12 +55,21 @@ def gen_tree(model):
     print('Parsing finished')
 
 class SegmentParseStatus(Enum):
+    '''
+    Delegeted for future use. Intended to deliver
+    information about the outcome a fragment parsing
+    '''
+
     DEFAULT = 0
     
 
 def parse_tree_fragment(model, fragment):
-    #parse a single source fragment present in the tree
-    #all source fragments are eventually decomposed into set of transitions and places
+    '''
+    Parse a single source fragment present in the tree.
+
+    All source fragments are eventually decomposed into 
+    a set of transitions and places.
+    '''
 
     if len(fragment.src) > 0:
         #if source code is present parse
@@ -547,7 +555,7 @@ def parse_segment(model, head, tail, src):
 
 '''
 
-NOTE 1: Exact two loop places migh exist but nonnecting the same loop
+NOTE 1: Exact two loop places migh exist but Connecting the same loop
 
 apply loop place v2:
     extract all loop places begin and end from main array

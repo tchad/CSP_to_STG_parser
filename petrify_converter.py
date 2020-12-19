@@ -11,9 +11,12 @@
 import p_types as t
 
 def uniquify_transitions(model):
+    '''
+    Creates unique names for different transitions 
+    that happens to have the same name of changing signal.
 
-    #creates unique names for different transitions under the same name
-    #according to petrify requirements
+    Necessary for Petrify to cerrectly interpet the model.
+    '''
 
     occurrence_counter = dict()
 

@@ -26,10 +26,9 @@ class TreeTransition(TreeElement):
 
 class TreeFragment(TreeElement):
     '''
-    Fragment has either the src field populated while 
-    the interpreter caught opening parenthesis, or 
-    label refering to a fragment in other part of the 
-    source code
+    Fragment has either the src field populated if 
+    the interpreter encounters an opening parenthesis,
+    or label refering to an unparsed fragment
     '''
     def __init__(self):
         super().__init__()
@@ -83,6 +82,7 @@ class Meta():
         self.markings = []
 
     def validate(self):
+        #TOTO: implement me 
         pass
 
 class CodeFragment():
@@ -100,5 +100,4 @@ class Model():
         self.code_fragments = []
 
         self.elements = []
-
 

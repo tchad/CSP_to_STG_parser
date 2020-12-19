@@ -33,7 +33,8 @@ explicit_place = re.compile(HEADER_EXPLICIT_PLACE)
 marking = re.compile(HEADER_MARKING)
 
 def label_fix(s):
-    #quick fix for the ? sign in labels
+    '''Quick fix for the ? sign in labels.'''
+
     s_str = r''
     for c in s:
         if c == '?':
